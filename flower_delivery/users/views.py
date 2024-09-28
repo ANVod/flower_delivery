@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserUpdateForm
 
 def register(request):
     if request.method == 'POST':
@@ -19,4 +20,17 @@ from django.shortcuts import render
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
+
+
+@login_required
+def profile_update(request):
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Перенаправление на страницу профиля после сохранения
+    else:
+        form = CustomUserUpdateForm(instance=request.user)
+
+    return render(request, 'users/profile_update.html', {'form': form})
 # Create your views here.
