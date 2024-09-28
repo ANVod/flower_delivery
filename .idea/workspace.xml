@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flower_delivery/users/templates/users/order_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/users/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/users/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
