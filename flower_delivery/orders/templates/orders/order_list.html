@@ -1,0 +1,8 @@
+<h1>Список заказов</h1>
+<ul>
+    {% for order in orders %}
+        <li>
+            <a href="{% url 'order_detail' order.id %}">Заказ #{{ order.id }} - Статус: {{ order.status }}</a>
+        </li>
+    {% endfor %}
+</ul>

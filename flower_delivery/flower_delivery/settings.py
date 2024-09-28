@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'reviews',
     'analytics',
     'telegram_bot',
+    'main',
 ]
 
 MIDDLEWARE = [

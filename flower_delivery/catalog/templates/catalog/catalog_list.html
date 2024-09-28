@@ -1,0 +1,8 @@
+<h1>Каталог цветов</h1>
+<ul>
+    {% for flower in flowers %}
+        <li>
+            <a href="{% url 'flower_detail' flower.id %}">{{ flower.name }}</a> - {{ flower.price }} руб.
+        </li>
+    {% endfor %}
+</ul>
