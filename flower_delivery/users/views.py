@@ -3,6 +3,7 @@ from .forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserUpdateForm
+from orders.models import Order
 
 def register(request):
     if request.method == 'POST':
@@ -34,3 +35,7 @@ def profile_update(request):
 
     return render(request, 'users/profile_update.html', {'form': form})
 # Create your views here.
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'users/order_history.html', {'orders': orders})
