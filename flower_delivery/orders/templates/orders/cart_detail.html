@@ -1,10 +1,10 @@
 <h1>Корзина</h1>
 <ul>
     {% for item in cart %}
-        <li>
-            {{ item.flower.name }} - {{ item.quantity }} шт. - {{ item.price }} руб.
+        <li>{{ item.flower.name }} - {{ item.quantity }} шт. - {{ item.total_price }} руб.
             <a href="{% url 'cart_remove' item.flower.id %}">Удалить</a>
         </li>
     {% endfor %}
 </ul>
-<p><a href="/orders/create/">Оформить заказ</a></p>
+<p><strong>Итого: {{ cart.get_total_price }} руб.</strong></p>
+<p><a href="{% url 'order_create' %}">Оформить заказ</a></p>

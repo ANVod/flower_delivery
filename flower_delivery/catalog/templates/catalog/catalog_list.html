@@ -2,7 +2,8 @@
 <ul>
     {% for flower in flowers %}
         <li>
-            <a href="{% url 'flower_detail' flower.id %}">{{ flower.name }}</a> - {{ flower.price }} руб.
+            <a href="{% url 'catalog:flower_detail' flower.id %}">{{ flower.name }}</a> - {{ flower.price }} руб.
+            <a href="{% url 'cart_add' flower.id %}">Добавить в корзину</a>
         </li>
     {% endfor %}
 </ul>
