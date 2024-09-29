@@ -1,8 +1,12 @@
-<h1>Каталог цветов</h1>
+<h2>Каталог цветов</h2>
 <ul>
     {% for flower in flowers %}
         <li>
-            <a href="{% url 'catalog:flower_detail' flower.id %}">{{ flower.name }}</a> - {{ flower.price }} руб.
+            <h3>{{ flower.name }}</h3>
+            <img src="{{ flower.image.url }}" alt="{{ flower.name }}">
+            <p>{{ flower.description }}</p>
+            <p>Цена: {{ flower.price }} руб.</p>
+            <p>В наличии: {{ flower.stock }}</p>
             <a href="{% url 'cart_add' flower.id %}">Добавить в корзину</a>
         </li>
     {% endfor %}
