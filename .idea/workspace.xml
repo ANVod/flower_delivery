@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/catalog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/templates/catalog/catalog_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/catalog/templates/catalog/catalog_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flower_delivery/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/flower_delivery/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flowers/c.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/media/flowers/c.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flowers/Голубые_Гортензии.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/media/flowers/Голубые_Гортензии.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flowers/Корзинка_с_гипсофилой.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/media/flowers/Корзинка_с_гипсофилой.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flowers/Розовые_Гортензии.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/media/flowers/Розовые_Гортензии.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flowers/Хелиантусы.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/media/flowers/Хелиантусы.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/telegram_bot/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/telegram_bot/bot.py" afterDir="false" />
-    </list>
+    <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
