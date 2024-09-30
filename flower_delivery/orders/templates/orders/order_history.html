@@ -1,0 +1,5 @@
+<ul>
+  {% for order in orders %}
+    <li>Заказ #{{ order.id }} - {{ order.created_at }} - Статус: {{ order.status }} - Адрес: {{ order.delivery_address }}</li>
+  {% endfor %}
+</ul>

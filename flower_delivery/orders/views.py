@@ -60,3 +60,8 @@ def order_report(request):
     }
 
     return render(request, 'orders/order_report.html', context)
+
+def order_history(request):
+    orders = Order.objects.filter(user=request.user)
+    context = {'orders': orders}
+    return render(request, 'orders/order_history.html', context)
