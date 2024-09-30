@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Order, OrderItem
 from catalog.models import Flower
 from .cart import Cart
+from django.db.models import Sum, Count
+from datetime import datetime
 
 def order_list(request):
     orders = Order.objects.all()
@@ -41,3 +43,20 @@ def order_create(request):
         cart.clear()
         return redirect('order_detail', order_id=order.id)
     return render(request, 'orders/order_create.html')
+
+
+def order_report(request):
+    orders = Order.objects.all()
+
+    total_orders = orders.count()
+    total_revenue = orders.aggregate(Sum('flowers__price'))['flowers__price__sum']
+    orders_by_status = orders.values('status').annotate(total=Count('id'))
+
+    context = {
+        'total_orders': total_orders,
+        'total_revenue': total_revenue,
+        'orders_by_status': orders_by_status,
+        'orders': orders,
+    }
+
+    return render(request, 'orders/order_report.html', context)

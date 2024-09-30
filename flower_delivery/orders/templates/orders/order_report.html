@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Отчет по заказам</h1>
+
+<p>Всего заказов: {{ total_orders }}</p>
+<p>Общая выручка: {{ total_revenue }}</p>
+
+<h2>Заказы по статусу:</h2>
+<ul>
+    {% for status in orders_by_status %}
+        <li>{{ status.status }}: {{ status.total }} заказов</li>
+    {% endfor %}
+</ul>
+
+<h2>Все заказы:</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Пользователь</th>
+        <th>Дата создания</th>
+        <th>Статус</th>
+        <th>Адрес доставки</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.user.username }}</td>
+        <td>{{ order.created_at }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.delivery_address }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
