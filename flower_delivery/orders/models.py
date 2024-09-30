@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from catalog.models import Flower
+from users.models import CustomUser
 
 class Order(models.Model):
     # Используем AUTH_USER_MODEL для поддержки кастомной модели пользователя

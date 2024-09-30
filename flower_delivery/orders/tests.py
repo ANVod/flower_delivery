@@ -8,6 +8,7 @@ class OrderTests(TestCase):
         self.user = CustomUser.objects.create_user(username='testuser', password='Testpass123')
 
     def test_create_order(self):
+        from orders.models import Order  # Теперь ссылка на Order должна быть разрешена
         self.client.login(username='testuser', password='Testpass123')
         response = self.client.post(reverse('order_create'), {
             'delivery_address': '123 Test St',
@@ -20,7 +21,7 @@ class OrderTests(TestCase):
         self.client.login(username='testuser', password='Testpass123')
         response = self.client.get(reverse('order_history'))
         self.assertEqual(response.status_code, 200)
-        print(response.content.decode())
+        print(response.content.decode()) # Вывод содержимого ответа
         self.assertContains(response, f'Заказ #{order.id}')  # Проверим ID заказа
         self.assertContains(response, '123 Test St')  # Проверим адрес
 
