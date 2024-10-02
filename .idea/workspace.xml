@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/orders/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +52,8 @@
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "last_opened_file_path": "C:/Users/ABC/Downloads/codeium-1.20.4.zip",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">

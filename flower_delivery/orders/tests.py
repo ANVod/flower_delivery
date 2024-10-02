@@ -18,10 +18,15 @@ class OrderTests(TestCase):
 
     def test_order_history(self):
         order = Order.objects.create(user=self.user, delivery_address='123 Test St', status='new')
+        print(order.delivery_address)  # Отладочный вывод для проверки сохранения адреса
         self.client.login(username='testuser', password='Testpass123')
         response = self.client.get(reverse('order_history'))
         self.assertEqual(response.status_code, 200)
-        print(response.content.decode()) # Вывод содержимого ответа
+
+        # Добавляем отладочный вывод содержимого страницы
+        print(f"Адрес доставки: {order.delivery_address}")
+        print(response.content.decode())  # Вывод содержимого для проверки
+
         self.assertContains(response, f'Заказ #{order.id}')  # Проверим ID заказа
         self.assertContains(response, '123 Test St')  # Проверим адрес
 
