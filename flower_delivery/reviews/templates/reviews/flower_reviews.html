@@ -1,0 +1,9 @@
+<h2>Отзывы для {{ flower.name }}</h2>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.user.username }}:</strong> {{ review.rating }} звезд
+            <p>{{ review.comment }}</p>
+        </li>
+    {% endfor %}
+</ul>

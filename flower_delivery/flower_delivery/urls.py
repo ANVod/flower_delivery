@@ -11,6 +11,7 @@ urlpatterns = [
     path('catalog/', include('catalog.urls')),  # URL для каталога цветов
     path('orders/', include('orders.urls')),  # URL для оформления заказов
     path('', include('main.urls')),  # URL для главной страницы (создадим позже)
+    path('reviews/', include('reviews.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

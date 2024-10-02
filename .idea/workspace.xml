@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/templates/reviews/add_review.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/templates/reviews/flower_reviews.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -45,17 +53,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/ABC/Downloads/codeium-1.20.4.zip",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ABC/Downloads/codeium-1.20.4.zip&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ABC\PycharmProjects\flower_delivery\flower_delivery\templates" />
