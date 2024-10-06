@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flower_delivery/orders/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/migrations/0002_flower_stock.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0002_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0003_orderitem.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0004_remove_order_delivery_address_order_total_price_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0005_alter_order_total_price.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0006_alter_order_flowers.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/templates/orders/order_create.html" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/templates/orders/order_create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/migrations/0002_remove_review_comment_review_text_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/users/migrations/0001_initial.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

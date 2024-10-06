@@ -3,6 +3,7 @@ from django.conf import settings
 from catalog.models import Flower
 
 
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ('new', 'Новый'),
@@ -18,15 +19,6 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Заказ {self.id} пользователя {self.user.username}"
-
-class OrderFlower(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-
-class Order(models.Model):
-    flowers = models.ManyToManyField(Flower, through=OrderFlower)
-
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
