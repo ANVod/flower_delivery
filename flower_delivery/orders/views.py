@@ -4,7 +4,7 @@ from .models import Order, OrderItem
 from catalog.models import Flower
 from .cart import Cart
 from django.db.models import Sum, Count
-from datetime import datetime
+from .forms import OrderForm
 
 def order_list(request):
     orders = Order.objects.all()
@@ -32,17 +32,17 @@ def cart_detail(request):
 
 @login_required
 def order_create(request):
-    cart = Cart(request)
     if request.method == 'POST':
-        # Создаем заказ
-        order = Order.objects.create(user=request.user)
-        for item in cart:
-            # Добавляем товар в заказ, учитывая количество
-            OrderItem.objects.create(order=order, flower=item['flower'], quantity=item['quantity'])
-        # Очищаем корзину
-        cart.clear()
-        return redirect('order_detail', order_id=order.id)
-    return render(request, 'orders/order_create.html')
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
+            form.save_m2m()  # сохраняем связи ManyToMany
+            return redirect('order_detail', order_id=order.id)  # перенаправление на страницу деталей заказа
+    else:
+        form = OrderForm()
+    return render(request, 'orders/create_order.html', {'form': form})
 
 
 def order_report(request):

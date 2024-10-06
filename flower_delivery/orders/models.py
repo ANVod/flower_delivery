@@ -1,24 +1,37 @@
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 from catalog.models import Flower
-from users.models import CustomUser
+
 
 class Order(models.Model):
-    # Используем AUTH_USER_MODEL для поддержки кастомной модели пользователя
+    STATUS_CHOICES = [
+        ('new', 'Новый'),
+        ('in_progress', 'В процессе'),
+        ('delivered', 'Доставлен'),
+    ]
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    flowers = models.ManyToManyField(Flower)
-    status = models.CharField(max_length=20, choices=[('new', 'New'), ('processing', 'Processing'), ('delivered', 'Delivered')])
+    flowers = models.ManyToManyField(Flower, through='OrderItem')
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
     created_at = models.DateTimeField(auto_now_add=True)
-    delivery_address = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Order {self.id} by {self.user.username}"
+        return f"Заказ {self.id} пользователя {self.user.username}"
+
+class OrderFlower(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+class Order(models.Model):
+    flowers = models.ManyToManyField(Flower, through=OrderFlower)
+
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f'{self.quantity} of {self.flower.name}'
-
+        return f"{self.quantity} x {self.flower.name}"

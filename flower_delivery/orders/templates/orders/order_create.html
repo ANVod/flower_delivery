@@ -1,5 +1,6 @@
-<h1>Оформление заказа</h1>
+<h2>Оформление заказа</h2>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Оформить</button>
+    {{ form.as_p }}
+    <button type="submit">Оформить заказ</button>
 </form>
