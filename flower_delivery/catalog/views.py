@@ -7,6 +7,8 @@ def catalog_list(request):
 
 def flower_detail(request, flower_id):
     flower = get_object_or_404(Flower, id=flower_id)
+    print('Flower ID:', flower.id)
+    print('Flower Name:', flower.name)
     return render(request, 'catalog/flower_detail.html', {'flower': flower})
 
 

@@ -1,4 +1,4 @@
-<h2>Добавить отзыв для {{ flower.name }}</h2>
+<h2>Добавить отзыв для {{ flower_id }}</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

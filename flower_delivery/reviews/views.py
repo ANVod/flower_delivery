@@ -15,7 +15,7 @@ def add_review(request, flower_id):
             review.flower = flower
             review.save()
             print('Redirecting to flower_detail with flower_id:', flower.id)
-            return redirect('flower_detail', flower_id=flower.id)
+            return redirect('catalog:flower_detail', flower_id=flower.id)
     else:
         form = ReviewForm()
     return render(request, 'reviews/add_review.html', {'form': form, 'flower': flower})

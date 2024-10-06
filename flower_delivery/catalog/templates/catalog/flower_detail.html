@@ -1,3 +1,4 @@
 <h1>{{ flower.name }}</h1>
-<p>Цена: {{ flower.price }} руб.</p>
+<p>Цена: {{ flower.price }} py6.</p>
 <p>{{ flower.description }}</p>
+<a href="{% url 'catalog:flower_detail' flower.id %}">{{ flower.name }}</a>
