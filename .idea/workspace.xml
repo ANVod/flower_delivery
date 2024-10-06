@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/templates/reviews/add_review.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/templates/reviews/flower_reviews.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flower_delivery/reviews/templates/reviews/review_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/catalog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/catalog/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/reviews/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>

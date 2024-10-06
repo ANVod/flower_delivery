@@ -14,6 +14,7 @@ def add_review(request, flower_id):
             review.user = request.user
             review.flower = flower
             review.save()
+            print('Redirecting to flower_detail with flower_id:', flower.id)
             return redirect('flower_detail', flower_id=flower.id)
     else:
         form = ReviewForm()
@@ -23,3 +24,7 @@ def flower_reviews(request, flower_id):
     flower = get_object_or_404(Flower, id=flower_id)
     reviews = Review.objects.filter(flower=flower)
     return render(request, 'reviews/flower_reviews.html', {'reviews': reviews, 'flower': flower})
+
+def review_list(request):
+    reviews = Review.objects.all()
+    return render(request, 'reviews/review_list.html', {'reviews': reviews})

@@ -1,0 +1,8 @@
+<h2>Отзывы</h2>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.user.username }}:</strong> {{ review.text }} (Оценка: {{ review.rating }})
+        </li>
+    {% endfor %}
+</ul>

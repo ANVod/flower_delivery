@@ -8,6 +8,6 @@ def catalog_list(request):
 def flower_detail(request, flower_id):
     flower = get_object_or_404(Flower, id=flower_id)
     return render(request, 'catalog/flower_detail.html', {'flower': flower})
-from django.shortcuts import render
+
 
 # Create your views here.
