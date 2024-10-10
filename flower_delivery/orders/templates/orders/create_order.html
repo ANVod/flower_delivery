@@ -1,6 +1,16 @@
-<h2>Оформление заказа</h2>
+{% extends 'base.html' %}
+{% block content %}
+<h2>Оформить заказ</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Оформить заказ</button>
+    <div class="mb-3">
+        <label for="flowers" class="form-label">Цветы</label>
+        {{ form.flowers|as_bootstrap }}
+    </div>
+    <div class="mb-3">
+        <label for="total_price" class="form-label">Общая цена</label>
+        {{ form.total_price|as_bootstrap }}
+    </div>
+    <button type="submit" class="btn btn-primary">Оформить заказ</button>
 </form>
+{% endblock %}
