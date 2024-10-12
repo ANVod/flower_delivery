@@ -4,7 +4,7 @@
 <h1>Добро пожаловать в Flower Delivery!</h1>
 <p>Выберите цветы из нашего каталога или оставьте отзыв.</p>
 <a href="{% url 'catalog:catalog_list' %}">Каталог</a>
-<a href="{% url 'add_review' %}" class="btn btn-secondary">Оставить отзыв</a>
+<a href="{% url 'add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
 {% endblock %}
 
 <div class="container mt-5">
@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ flower.name }}</h5>
                     <p class="card-text">{{ flower.description }}</p>
-                    <a href="{% url 'flower_detail' flower.id %}" class="btn btn-primary">Подробнее</a>
+                    <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         </div>

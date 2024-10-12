@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'catalog' %}">Каталог</a>
+          <a class="nav-link" href="{% url 'catalog:catalog_list' %}">Каталог</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_review' %}">Оставить отзыв</a>
+          <a class="nav-link" href="{% url 'add_review' flower.id %}">Оставить отзыв</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'order_history' %}">История заказов</a>
