@@ -100,7 +100,11 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.codeium.enabled": "true",
+<<<<<<< Updated upstream
     "git-widget-placeholder": "main",
+=======
+    "git-widget-placeholder": "c163fcd1",
+>>>>>>> Stashed changes
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/ABC/Downloads/codeium-1.20.4.zip",
     "settings.editor.selected.configurable": "preferences.pluginManager"
