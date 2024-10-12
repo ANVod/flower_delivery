@@ -10,7 +10,7 @@
           <a class="nav-link" href="{% url 'catalog' %}">Каталог</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'reviews' %}">Отзывы</a>
+          <a class="nav-link" href="{% url 'add_review' flower.id %}">Оставить отзыв</a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">

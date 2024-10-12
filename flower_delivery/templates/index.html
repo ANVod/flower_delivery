@@ -1,13 +1,12 @@
-{% extends 'base.html' %}
+% extends 'base.html' %}
 
 {% block content %}
 <h1>Добро пожаловать в Flower Delivery!</h1>
 <p>Выберите цветы из нашего каталога или оставьте отзыв.</p>
 <a href="{% url 'catalog:catalog_list' %}">Каталог</a>
-<a href="{% url 'add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
 {% endblock %}
 
-<div class="container mt-5">
+<div class="container mt{-5">
     <div class="row">
         {% for flower in flowers %}
         <div class="col-md-4">
