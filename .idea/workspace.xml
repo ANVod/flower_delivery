@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
 =======
+=======
+    <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> parent of c163fcd (Fixit Off)
       <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/migrations/0002_flower_stock.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/orders/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/forms.py" afterDir="false" />
@@ -22,11 +27,15 @@
       <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/migrations/0002_remove_review_comment_review_text_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/users/migrations/0001_initial.py" beforeDir="false" />
+<<<<<<< HEAD
 >>>>>>> parent of c163fcd (Fixit Off)
     </list>
 =======
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="" />
 >>>>>>> Stashed changes
+=======
+    </list>
+>>>>>>> parent of c163fcd (Fixit Off)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,6 +74,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
@@ -75,6 +85,8 @@
     "last_opened_file_path": "C:/Users/ABC/Downloads/codeium-1.20.4.zip",
     "settings.editor.selected.configurable": "preferences.pluginManager"
 =======
+=======
+>>>>>>> parent of c163fcd (Fixit Off)
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -84,6 +96,9 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/ABC/Downloads/codeium-1.20.4.zip&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+<<<<<<< HEAD
+>>>>>>> parent of c163fcd (Fixit Off)
+=======
 >>>>>>> parent of c163fcd (Fixit Off)
   }
 }</component>
