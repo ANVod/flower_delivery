@@ -1,6 +1,13 @@
-<h2>Добавить отзыв для {{ flower_id }}</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Отправить отзыв</button>
-</form>
+<div class="container mt-5">
+    <h2>Добавить отзыв</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.name.label_tag }}: {{ form.name }}
+        </div>
+        <div class="mb-3">
+            {{ form.text.label_tag }}: {{ form.text }}
+        </div>
+        <button type="submit" class="btn btn-success">Отправить</button>
+    </form>
+</div>

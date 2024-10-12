@@ -1,20 +1,25 @@
-<!-- templates/index.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Delivery</title>
-</head>
-<body>
-    <h1>Добро пожаловать в наш сервис доставки цветов!</h1>
-    <nav>
-        <ul>
-            <li><a href="{% url 'catalog:catalog_list' %}">Каталог цветов</a></li>
-            <li><a href="{% url 'register' %}">Регистрация</a></li>
-            <li><a href="{% url 'login' %}">Вход</a></li>
-        </ul>
-    </nav>
-</body>
-</html>
-l>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добро пожаловать в Flower Delivery!</h1>
+<p>Выберите цветы из нашего каталога или оставьте отзыв.</p>
+<a href="{% url 'catalog' %}" class="btn btn-primary">Каталог</a>
+<a href="{% url 'add_review' %}" class="btn btn-secondary">Оставить отзыв</a>
+{% endblock %}
+
+<div class="container mt-5">
+    <div class="row">
+        {% for flower in flowers %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flower.name }}</h5>
+                    <p class="card-text">{{ flower.description }}</p>
+                    <a href="{% url 'flower_detail' flower.id %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
