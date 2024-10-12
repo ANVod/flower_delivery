@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/catalog/migrations/0002_flower_stock.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0002_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0003_orderitem.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0004_remove_order_delivery_address_order_total_price_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0005_alter_order_total_price.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/migrations/0006_alter_order_flowers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/reviews/migrations/0002_remove_review_comment_review_text_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/users/migrations/0001_initial.py" beforeDir="false" />
-    </list>
+    <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,17 +42,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ABC/Downloads/codeium-1.20.4.zip&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "ecc766ad",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ABC/Downloads/codeium-1.20.4.zip",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ABC\PycharmProjects\flower_delivery\flower_delivery\templates" />
