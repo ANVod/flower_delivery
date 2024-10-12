@@ -1,0 +1,212 @@
+[33mcommit 633001e739a18e633575b5fc1714b353b5fd9811[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 16:32:29 2024 +0300
+
+    workspace.xml
+
+[33mcommit 1621bf51d4ef923e3ea11b0a7e50ffd9e8f059eb[m[33m ([m[1;31morigin/detached[m[33m)[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 15:52:08 2024 +0300
+
+    add
+
+[33mcommit 1225411f62da1cb71aeb0c295fada9f6e9cd6aaf[m[33m ([m[1;32mnew[m[33m)[m
+Merge: 90ef370 c163fcd
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 15:43:32 2024 +0300
+
+    Merge pull request #1 from ANVod/detached
+    
+    Fixit Off
+
+[33mcommit c163fcd16c9a2a718594291201d08c16cc089270[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 12:59:02 2024 +0300
+
+    Fixit Off
+    
+    Откат на последнюю стабильную версию.
+
+[33mcommit 90ef370e9df30602733e2c34f8fee6349985840f[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 12:54:26 2024 +0300
+
+    Fixit
+    
+    Ошибки не удается исправить. Нужен откат на прежнюю стабильную версию.
+
+[33mcommit 538d966651911a41846c355acd5a283de428088b[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 12:40:29 2024 +0300
+
+    Fixit
+    
+    Вообще все сломал
+
+[33mcommit a5a63a69f2d7020a516633bb1edc8ed6010eedf7[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Oct 12 11:20:33 2024 +0300
+
+    fixit
+    
+    Исправление кода главной страницы. Назначение шаблона на связанных страницах. Улучшение вида страниц.
+
+[33mcommit 06c202314f1cdd45ca48be8b95269dc8973da8c5[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Thu Oct 10 21:57:52 2024 +0300
+
+    add Bootstrap
+    
+    Добавление в шаблоны Bootstrap 5
+
+[33mcommit ce43a49924f54a281d2924bb1fb7a8044fedaf2d[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Oct 6 22:53:14 2024 +0300
+
+    Update workspace.xml
+
+[33mcommit ecc766adf51e8181de5eeaee27597a363bed9360[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Oct 6 22:51:58 2024 +0300
+
+    errors have been fixed
+    
+    ошибки исправлены
+
+[33mcommit 728ab4acec3205e016ffcf334165153b36fce2d3[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Oct 6 20:16:55 2024 +0300
+
+    fixit orders
+
+[33mcommit 628e1243d936c52de4ac666093750ec1a82b032d[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Oct 6 18:46:14 2024 +0300
+
+    I fixed the errors
+    
+    Ошибки исправил
+
+[33mcommit 0b5bee4594012fa4e35b91c34e86761800676509[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Oct 6 17:07:28 2024 +0300
+
+    fixit
+
+[33mcommit 7202419e52bc43fed70ea64a2a79d02b35fa7459[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Thu Oct 3 00:08:47 2024 +0300
+
+    add reviews
+
+[33mcommit ed801f334c02a9de9f0ac12fa6a45e511315fcba[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Wed Oct 2 23:29:45 2024 +0300
+
+    Fixit 1 2 3 test
+    
+    Вопрос с тестированием так и не решен. Оставляем отладку на потом для продолжения проекта
+
+[33mcommit 43a6dfb275e581830f1fba1025c1370ef29b6a16[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Tue Oct 1 00:05:37 2024 +0300
+
+    Ошибки test orders пока не исправлена
+
+[33mcommit 8203cdb29844481358438d02fcf6d7f9dbd2f072[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Mon Sep 30 23:03:13 2024 +0300
+
+    fixit Ошибка в 123 Test St
+
+[33mcommit 839046add9214e3fc894c3e262d19849cdfa0824[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Mon Sep 30 22:09:19 2024 +0300
+
+    report Создание отчета по заказам
+
+[33mcommit fec277a9ae579ff004d40d89a9e86b59795e6686[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Sep 29 12:25:25 2024 +0300
+
+    остатки комита
+
+[33mcommit 310e9b10c718401a5147397532ba075d9b51b003[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sun Sep 29 12:24:45 2024 +0300
+
+    Настройка функция Телеграм бота
+
+[33mcommit d2a48fd0cd6df3b2a8c74333e71d8e901840e7e3[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 21:25:39 2024 +0300
+
+    ХЗ Что то осталось
+
+[33mcommit dba4ecb825d493b1f54620a0302097571d485e27[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 21:24:48 2024 +0300
+
+    Добавлены и успешно пройдены юнит-тесты для модуля users
+
+[33mcommit 3063842424244d9b879c73727b2ca80d0c9fd8ac[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 21:12:11 2024 +0300
+
+    Добавлен просмотр истории заказов пользователя
+
+[33mcommit ca942a150002b51ae991d1385915f9b9034ebcd1[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 21:06:31 2024 +0300
+
+    Реализовано редактирование профиля пользователя
+
+[33mcommit 6a42d59cb9eccd64b8363f2ecccaedd5dcc0126c[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 20:56:15 2024 +0300
+
+    Добавлен профиль пользователя и перенаправление после авторизации
+
+[33mcommit 0168ad28615eb37ab212c16bb9a6187752b10b3d[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 19:19:06 2024 +0300
+
+    Fixed models, implemented cart and order functionality
+
+[33mcommit 624cbaba18f6ede77da533b74448997f6a2c92ca[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 18:44:43 2024 +0300
+
+    Fixed migration issues, implemented catalog and order structure
+
+[33mcommit 1d1e58edfdbc2207a4a59d39e61fca897cd2af06[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 18:16:15 2024 +0300
+
+    Added basic models for users, catalog, orders, and telegram bot setup
+    
+    Исправлены ошибки миграции
+
+[33mcommit 7407f6b353b50f4542a113301aacb9bd93884ad5[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 18:10:55 2024 +0300
+
+    Added basic models for users, catalog, orders, and telegram bot setup
+
+[33mcommit ed0c410729709e3c8f880b177cb8c1c468b60243[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 18:01:51 2024 +0300
+
+    Initial commit with basic project structure
+
+[33mcommit 3e65102bc35cfc9a731d02e1927f2f24a6f740ef[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 18:01:06 2024 +0300
+
+    Initial commit with basic project structure
+
+[33mcommit b6d94fd7a5003336e5ece862059d801bd31b878b[m
+Author: ANVod <157865931+ANVod@users.noreply.github.com>
+Date:   Sat Sep 28 17:41:39 2024 +0300
+
+    Initial commit
