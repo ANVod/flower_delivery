@@ -19,6 +19,24 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'order_history' %}">История заказов</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cart_detail' %}">Корзина</a>  <!-- Ссылка на корзину -->
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">Личный кабинет</a>  <!-- Ссылка на профиль -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>  <!-- Ссылка на выход -->
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Вход</a>  <!-- Ссылка на вход -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Регистрация</a>  <!-- Ссылка на регистрацию -->
+        </li>
+        {% endif %}
       </ul>
     </div>
   </div>
