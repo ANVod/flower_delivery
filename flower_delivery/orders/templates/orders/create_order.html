@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Оформить заказ</h2>
+<h2>Оформление заказа</h2>
 <form method="post">
     {% csrf_token %}
-    <div class="mb-3">
-        <label for="flowers" class="form-label">Цветы</label>
-        {{ form.flowers|as_bootstrap }}
-    </div>
-    <div class="mb-3">
-        <label for="total_price" class="form-label">Общая цена</label>
-        {{ form.total_price|as_bootstrap }}
-    </div>
-    <button type="submit" class="btn btn-primary">Оформить заказ</button>
+    {{ form.as_p }}
+    <label for="id_delivery_address">Адрес доставки:</label>
+    <input type="text" name="delivery_address" id="id_delivery_address" placeholder="Введите адрес доставки" required>
+    <h2>Ваш заказ:</h2>
+    <ul>
+        {% for item in cart %}
+            <li>
+                <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" style="max-width: 50px;">
+                <p>{{ item.flower.name }}</p>
+                <p>Количество: {{ item.quantity }}</p>
+                <p>Цена: {{ item.price }} руб.</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Общая стоимость: {{ cart.get_total_price }} руб.</p>
+    <button type="submit">Оформить заказ</button>
 </form>
 {% endblock %}

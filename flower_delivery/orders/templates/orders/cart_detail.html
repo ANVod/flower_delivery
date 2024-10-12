@@ -1,10 +1,16 @@
-<h1>Корзина</h1>
+<h2>Корзина</h2>
 <ul>
     {% for item in cart %}
-        <li>{{ item.flower.name }} - {{ item.quantity }} шт. - {{ item.total_price }} руб.
-            <a href="{% url 'cart_remove' item.flower.id %}">Удалить</a>
+        <li>
+            <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" class="img-fluid" style="max-width: 100px;">
+            <h3>{{ item.flower.name }}</h3>
+            <p>Количество: {{ item.quantity }}</p>
+            <p>Цена: {{ item.total_price }} руб.</p>
         </li>
     {% endfor %}
 </ul>
-<p><strong>Итого: {{ cart.get_total_price }} руб.</strong></p>
-<p><a href="{% url 'order_create' %}">Оформить заказ</a></p>
+<p>Общая стоимость: {{ cart.get_total_price }} руб.</p>
+<form action="{% url 'order_create' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Оформить заказ</button>
+</form>

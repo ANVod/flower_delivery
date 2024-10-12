@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-    {% for flower in flowers %}
     <div class="col-md-4">
         <div class="card mb-4">
             <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ flower.name }}</h5>
                 <p class="card-text">{{ flower.price }} ₽</p>
-                <a href="{% url 'flower_detail' flower.id %}" class="btn btn-primary">Подробнее</a>
+                <p>{{ flower.description }}</p>
+                <!-- Убрали цикл, т.к. выводим один цветок -->
             </div>
         </div>
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

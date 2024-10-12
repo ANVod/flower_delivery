@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Добро пожаловать в Flower Delivery!</h1>
 <p>Выберите цветы из нашего каталога или оставьте отзыв.</p>
-<a href="{% url 'catalog' %}" class="btn btn-primary">Каталог</a>
+<a href="{% url 'catalog:catalog_list' %}">Каталог</a>
 <a href="{% url 'add_review' %}" class="btn btn-secondary">Оставить отзыв</a>
 {% endblock %}
 

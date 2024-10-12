@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Flower
 
 def catalog_list(request):
-    flowers = Flower.objects.all()
+    flowers = Flower.objects.all() # Получение всех цветов из базы
     return render(request, 'catalog/catalog_list.html', {'flowers': flowers})
 
 def flower_detail(request, flower_id):
