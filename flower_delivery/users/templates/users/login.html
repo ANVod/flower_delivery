@@ -1,8 +1,13 @@
-<!-- users/login.html -->
+{% extends 'flower_delivery/base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
 <h2>Вход в систему</h2>
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Войти</button>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Войти</button>
 </form>
 <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+{% endblock %}

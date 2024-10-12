@@ -39,3 +39,9 @@ def profile_update(request):
 def order_history(request):
     orders = Order.objects.filter(user=request.user)
     return render(request, 'users/order_history.html', {'orders': orders})
+
+def login_view(request):
+    # ... ваш код для обработки формы входа
+    if form.is_valid():
+        login(request, form.get_user())
+        return redirect('catalog')  # Перенаправляем на страницу каталога после входа
