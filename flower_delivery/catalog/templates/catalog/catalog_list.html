@@ -10,7 +10,9 @@
             <p>{{ flower.description }}</p>
             <p>Цена: {{ flower.price }} руб.</p>
             <p>В наличии: {{ flower.stock }}</p>
-            <a href="{% url 'catalog:flower_detail' flower.id %}">Подробнее</a> <!-- Исправленная ссылка -->
+            <a href="{% url 'catalog:flower_detail' flower.id %}">Подробнее</a>
+            <!-- Добавляем кнопку для заказа -->
+            <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Заказать</a>
         </li>
     {% endfor %}
 </ul>

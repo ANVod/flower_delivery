@@ -1,29 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Оформление заказа</h2>
+
 <form method="post">
     {% csrf_token %}
+    {{ form.delivery_address.label }} {{ form.delivery_address }} <!-- Оставляем только поле для адреса доставки -->
 
-    <!-- Оставляем только поле для ввода адреса доставки -->
-    <label for="id_delivery_address">Адрес доставки:</label>
-    <input type="text" name="delivery_address" id="id_delivery_address" placeholder="Введите адрес доставки" required>
-
+    <!-- Отображение товаров из корзины -->
     <h2>Ваш заказ:</h2>
     <ul>
         {% for item in cart %}
-            <li>
-                <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" style="max-width: 50px;">
-                <p>{{ item.flower.name }}</p>
-                <p>Количество: {{ item.quantity }}</p>
-                <p>Цена: {{ item.price }} руб.</p>
-                <p>Общая стоимость: {{ item.total_price }} руб.</p>
-            </li>
+        <li>
+            <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" style="max-width: 50px;">
+            <p>{{ item.flower.name }}</p>
+            <p>Количество: {{ item.quantity }}</p>
+            <p>Цена: {{ item.price }} руб.</p>
+            <p>Общая стоимость: {{ item.total_price }} руб.</p>
+        </li>
         {% endfor %}
     </ul>
 
-    <!-- Автоматически рассчитываем общую стоимость -->
-    <p>Общая стоимость: {{ total_price }} руб.</p>
+    <p>Общая стоимость заказа: {{ total_price }} руб.</p>
 
-    <button type="submit">Оформить заказ</button>
+    <button type="submit" class="btn btn-primary">Оформить заказ</button>
 </form>
 {% endblock %}

@@ -10,7 +10,7 @@
     {% endfor %}
 </ul>
 <p>Общая стоимость: {{ cart.get_total_price }} руб.</p>
-<form action="{% url 'order_create' %}" method="post">
+<form action="{% url 'orders:order_create' %}" method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary">Оформить заказ</button>
 </form>
