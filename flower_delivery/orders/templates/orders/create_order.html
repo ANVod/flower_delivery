@@ -3,9 +3,11 @@
 <h2>Оформление заказа</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    <!-- Оставляем только поле для ввода адреса доставки -->
     <label for="id_delivery_address">Адрес доставки:</label>
     <input type="text" name="delivery_address" id="id_delivery_address" placeholder="Введите адрес доставки" required>
+
     <h2>Ваш заказ:</h2>
     <ul>
         {% for item in cart %}
@@ -14,10 +16,14 @@
                 <p>{{ item.flower.name }}</p>
                 <p>Количество: {{ item.quantity }}</p>
                 <p>Цена: {{ item.price }} руб.</p>
+                <p>Общая стоимость: {{ item.total_price }} руб.</p>
             </li>
         {% endfor %}
     </ul>
-    <p>Общая стоимость: {{ cart.get_total_price }} руб.</p>
+
+    <!-- Автоматически рассчитываем общую стоимость -->
+    <p>Общая стоимость: {{ total_price }} руб.</p>
+
     <button type="submit">Оформить заказ</button>
 </form>
 {% endblock %}

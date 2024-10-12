@@ -32,22 +32,29 @@ def cart_detail(request):
 
 @login_required
 def order_create(request):
+    cart = Cart(request)
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
             order.user = request.user
             order.save()
-            form.save_m2m()  # сохраняем связи ManyToMany
-            return redirect('order_detail', order_id=order.id)  # перенаправление на страницу деталей заказа
+            # Привязываем товары из корзины к заказу
+            for item in cart:
+                order.items.create(flower=item['flower'], price=item['price'], quantity=item['quantity'])
+            cart.clear()
+            return redirect('order_detail', order_id=order.id)
     else:
         form = OrderForm()
-    return render(request, 'orders/create_order.html', {'form': form})
 
+    return render(request, 'orders/create_order.html', {
+        'form': form,
+        'cart': cart,  # Передаем корзину в шаблон
+        'total_price': cart.get_total_price()  # Передаем общую стоимость
+    })
 
 def order_report(request):
     orders = Order.objects.all()
-
     total_orders = orders.count()
     total_revenue = orders.aggregate(Sum('flowers__price'))['flowers__price__sum']
     orders_by_status = orders.values('status').annotate(total=Count('id'))
@@ -63,5 +70,4 @@ def order_report(request):
 
 def order_history(request):
     orders = Order.objects.filter(user=request.user)
-    context = {'orders': orders}
-    return render(request, 'orders/order_history.html', context)
+    return render(request, 'orders/order_history.html', {'orders': orders})
