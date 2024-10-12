@@ -4,6 +4,8 @@ from .models import Order, OrderItem
 from catalog.models import Flower
 from .cart import Cart
 from django.db.models import Sum, Count
+from django.http import HttpResponse
+import csv
 from .forms import OrderForm
 
 @login_required
@@ -42,7 +44,7 @@ def order_history(request):
 
 @login_required
 def order_report(request):
-    """Формирование отчета по заказам"""
+    """Формирование отчета по заказам в виде HTML"""
     orders = Order.objects.all()
 
     total_orders = orders.count()
@@ -57,6 +59,21 @@ def order_report(request):
     }
 
     return render(request, 'orders/order_report.html', context)
+
+@login_required
+def order_report_csv(request):
+    """Формирование отчета по заказам в формате CSV"""
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="order_report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Order ID', 'Customer', 'Total', 'Date'])
+
+    orders = Order.objects.all()
+    for order in orders:
+        writer.writerow([order.id, order.user.username, order.total_price, order.created_at])
+
+    return response
 
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id)
