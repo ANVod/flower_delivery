@@ -17,7 +17,9 @@
           <a class="nav-link" href="{% url 'catalog:catalog_list' %}">Каталог</a>
         </li>
         <li class="nav-item">с
+          {% for flower in flowers %}
           <a href="{% url 'reviews:add_review' flower.id %}">Оставить отзыв</a>
+          {% endfor %}
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'order_history' %}">История заказов</a>
