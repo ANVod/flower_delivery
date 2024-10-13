@@ -2,18 +2,21 @@
 
 {% block content %}
 <h2>Каталог цветов</h2>
-<ul>
+<div class="row">
     {% for flower in flowers %}
-        <li>
-            <h3>{{ flower.name }}</h3>
-            <img src="{{ flower.image.url }}" alt="{{ flower.name }}">
-            <p>{{ flower.description }}</p>
-            <p>Цена: {{ flower.price }} руб.</p>
-            <p>В наличии: {{ flower.stock }}</p>
-            <a href="{% url 'catalog:flower_detail' flower.id %}">Подробнее</a>
-            <!-- Добавляем кнопку для заказа -->
-            <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Заказать</a>
-        </li>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flower.name }}</h5>
+                    <p class="card-text">{{ flower.description }}</p>
+                    <p><strong>Цена:</strong> {{ flower.price }} ₽</p>
+                    <p><strong>В наличии:</strong> {{ flower.stock }} шт.</p>
+                    <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-info">Подробнее</a>
+                    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Заказать</a> <!-- Кнопка Заказать -->
+                </div>
+            </div>
+        </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

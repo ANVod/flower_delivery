@@ -1,38 +1,23 @@
 {% extends 'base.html' %}
-{% block content %}
-<div class="row">
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ flower.name }}</h5>
-                <p class="card-text">{{ flower.price }} ₽</p>
-                <p>{{ flower.description }}</p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Раздел отзывов -->
-<div class="reviews-section">
+{% block content %}
+<div class="container">
+    <h2>{{ flower.name }}</h2>
+    <img src="{{ flower.image.url }}" alt="{{ flower.name }}">
+    <p>{{ flower.description }}</p>
+    <p><strong>Цена:</strong> {{ flower.price }} ₽</p>
+    <p><strong>В наличии:</strong> {{ flower.stock }} шт.</p>
+    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Добавить в корзину</a>
+
     <h3>Отзывы:</h3>
     <ul>
-        {% for review in flower.reviews.all %}
-        <li><strong>{{ review.user.username }}:</strong> {{ review.text }} (Рейтинг: {{ review.rating }}/5)</li>
+        {% for review in reviews %}
+        <li>{{ review.user.username }}: {{ review.text }} (Рейтинг: {{ review.rating }})</li>
         {% empty %}
         <li>Отзывов пока нет.</li>
         {% endfor %}
     </ul>
-</div>
 
-<!-- Форма для добавления отзыва -->
-<div class="review-form">
-    <h3>Оставить отзыв:</h3>
-    <form action="{% url 'reviews:add_review' flower.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
-    </form>
+    <a href="{% url 'reviews:add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
 </div>
-
 {% endblock %}

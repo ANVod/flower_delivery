@@ -3,6 +3,11 @@ from .models import Flower
 from reviews.forms import ReviewForm
 from reviews.models import Review
 
+def index(request):
+    # Получаем список всех цветов для отображения на главной странице
+    flowers = Flower.objects.all()
+    return render(request, 'main/index.html', {'flowers': flowers})
+
 def catalog_list(request):
     flowers = Flower.objects.all()  # Получение всех цветов из базы
     return render(request, 'catalog/catalog_list.html', {'flowers': flowers})

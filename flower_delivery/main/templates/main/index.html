@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Delivery</title>
-</head>
-<body>
-    <h1>Добро пожаловать в наш сервис доставки цветов!</h1>
-    <a href="/catalog/">Каталог цветов</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добро пожаловать в Flower Delivery!</h1>
+<p>Выберите цветы из нашего каталога или оставьте отзыв.</p>
+<a href="{% url 'catalog:catalog_list' %}">Каталог</a>
+
+<div class="container mt-5">
+    <div class="row">
+        {% for flower in flowers %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flower.name }}</h5>
+                    <p class="card-text">{{ flower.price }} ₽</p> <!-- Отображение цены -->
+                    <p>{{ flower.description }}</p>
+                    <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-primary">Подробнее</a>
+                    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-success">Заказать</a> <!-- Кнопка Заказать -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
