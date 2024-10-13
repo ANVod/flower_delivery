@@ -1,9 +1,12 @@
+from decimal import Decimal
 from django.conf import settings
 from catalog.models import Flower
 
 class Cart:
     def __init__(self, request):
-        """ Инициализация корзины. """
+        """
+        Инициализируем корзину пользователя.
+        """
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
@@ -11,7 +14,9 @@ class Cart:
         self.cart = cart
 
     def add(self, flower, quantity=1, override_quantity=False):
-        """ Добавление товара в корзину или изменение его количества. """
+        """
+        Добавление товара в корзину или обновление количества товара.
+        """
         flower_id = str(flower.id)
         if flower_id not in self.cart:
             self.cart[flower_id] = {'quantity': 0, 'price': str(flower.price)}
@@ -22,35 +27,35 @@ class Cart:
         self.save()
 
     def save(self):
-        """ Помечает сессию как изменённую для сохранения изменений. """
+        # помечаем сессию как "измененную"
         self.session.modified = True
 
     def remove(self, flower):
-        """ Удаление товара из корзины. """
+        """
+        Удаление товара из корзины.
+        """
         flower_id = str(flower.id)
         if flower_id in self.cart:
             del self.cart[flower_id]
             self.save()
 
     def __iter__(self):
-        """ Перебор элементов корзины и получение связанных объектов товаров. """
         flower_ids = self.cart.keys()
         flowers = Flower.objects.filter(id__in=flower_ids)
+        cart = self.cart.copy()
         for flower in flowers:
-            self.cart[str(flower.id)]['flower'] = flower
-            self.cart[str(flower.id)]['total_price'] = float(self.cart[str(flower.id)]['price']) * self.cart[str(flower.id)]['quantity']
-            yield self.cart[str(flower.id)]
+            cart[str(flower.id)]['flower'] = flower
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['quantity']
+            yield item
 
     def __len__(self):
-        """ Возвращает общее количество товаров в корзине. """
         return sum(item['quantity'] for item in self.cart.values())
 
     def get_total_price(self):
-        """ Возвращает общую стоимость товаров в корзине. """
-        return sum(float(item['price']) * item['quantity'] for item in self.cart.values())
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     def clear(self):
-        """ Полностью очищает корзину. """
-        if settings.CART_SESSION_ID in self.session:
-            del self.session[settings.CART_SESSION_ID]
-            self.save()
+        del self.session[settings.CART_SESSION_ID]
+        self.save()

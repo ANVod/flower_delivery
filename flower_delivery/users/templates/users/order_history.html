@@ -3,7 +3,7 @@
 {% if orders %}
     <ul>
     {% for order in orders %}
-        <li>Заказ #{{ order.id }} - {{ order.created_at }} - Статус: {{ order.status }}</li>
+        <li>Заказ #{{ order.id }} - {{ order.created_at|date:"d M Y H:i" }} - Статус: {{ order.status }}</li>
     {% endfor %}
     </ul>
 {% else %}

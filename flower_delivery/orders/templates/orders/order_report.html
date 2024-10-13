@@ -30,7 +30,7 @@
         <td>{{ order.user.username }}</td>
         <td>{{ order.created_at|date:"d M Y H:i" }}</td>
         <td>{{ order.status }}</td>
-        <td>{{ order.delivery_address }}</td>
+        <td>{{ order.delivery_address }}</td>  <!-- Отображение адреса доставки -->
     </tr>
     {% empty %}
     <tr>

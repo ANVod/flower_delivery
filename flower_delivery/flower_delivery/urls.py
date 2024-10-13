@@ -13,5 +13,6 @@ urlpatterns = [
     path('', include('main.urls')),  # URL для главной страницы
     path('reviews/', include('reviews.urls')),  # URL для отзывов
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
