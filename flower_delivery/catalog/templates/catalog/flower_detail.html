@@ -8,9 +8,31 @@
                 <h5 class="card-title">{{ flower.name }}</h5>
                 <p class="card-text">{{ flower.price }} ₽</p>
                 <p>{{ flower.description }}</p>
-                <!-- Убрали цикл, т.к. выводим один цветок -->
             </div>
         </div>
     </div>
 </div>
+
+<!-- Раздел отзывов -->
+<div class="reviews-section">
+    <h3>Отзывы:</h3>
+    <ul>
+        {% for review in flower.reviews.all %}
+        <li><strong>{{ review.user.username }}:</strong> {{ review.text }} (Рейтинг: {{ review.rating }}/5)</li>
+        {% empty %}
+        <li>Отзывов пока нет.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Форма для добавления отзыва -->
+<div class="review-form">
+    <h3>Оставить отзыв:</h3>
+    <form action="{% url 'reviews:add_review' flower.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+    </form>
+</div>
+
 {% endblock %}
