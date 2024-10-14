@@ -6,6 +6,10 @@
             <h3>{{ item.flower.name }}</h3>
             <p>Количество: {{ item.quantity }}</p>
             <p>Цена: {{ item.total_price }} руб.</p>
+            <form action="{% url 'orders:cart_remove' item.flower.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
         </li>
     {% endfor %}
 </ul>
