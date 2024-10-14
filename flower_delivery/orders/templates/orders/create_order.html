@@ -4,23 +4,36 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ form.delivery_address.label }} {{ form.delivery_address }} <!-- Оставляем только поле для адреса доставки -->
+    <div class="form-group">
+        <label for="id_delivery_address">Адрес доставки</label>
+        {{ form.delivery_address }} <!-- Поле для адреса доставки -->
+    </div>
+    <div class="form-group">
+        <label for="id_comment">Комментарий</label>
+        {{ form.comment }} <!-- Поле для комментария -->
+    </div>
 
     <!-- Отображение товаров из корзины -->
-    <h2>Ваш заказ:</h2>
-    <ul>
+    <h3>Ваш заказ:</h3>
+    <ul class="list-group">
         {% for item in cart %}
-        <li>
-            <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" style="max-width: 50px;">
-            <p>{{ item.flower.name }}</p>
-            <p>Количество: {{ item.quantity }}</p>
-            <p>Цена: {{ item.price }} руб.</p>
-            <p>Общая стоимость: {{ item.total_price }} руб.</p>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" class="img-fluid" style="max-width: 100%;">
+                </div>
+                <div class="col-10">
+                    <p><strong>{{ item.flower.name }}</strong></p>
+                    <p>Количество: {{ item.quantity }}</p>
+                    <p>Цена: {{ item.price }} руб.</p>
+                    <p><strong>Общая стоимость: {{ item.total_price }} руб.</strong></p>
+                </div>
+            </div>
         </li>
         {% endfor %}
     </ul>
 
-    <p>Общая стоимость заказа: {{ total_price }} руб.</p>
+    <p><strong>Общая стоимость заказа: {{ total_price }} руб.</strong></p>
 
     <button type="submit" class="btn btn-primary">Оформить заказ</button>
 </form>
