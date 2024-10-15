@@ -138,6 +138,8 @@ AUTH_USER_MODEL = 'users.CustomUser'
 CART_SESSION_ID = 'cart'
 
 LOGIN_REDIRECT_URL = '/users/profile/'
+LOGIN_URL = '/users/login/'
+LOGOUT_REDIRECT_URL = '/users/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

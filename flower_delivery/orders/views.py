@@ -30,7 +30,7 @@ def send_order_status_telegram(order):
 
 
 # Создание заказа
-@login_required
+@login_required(login_url='users:login')  # Перенаправление на страницу логина, если пользователь не авторизован
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
