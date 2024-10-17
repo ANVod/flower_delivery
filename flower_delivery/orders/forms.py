@@ -4,4 +4,4 @@ from .models import Order
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['delivery_address', 'comment']  # Добавлено поле для комментария
+        fields = ['delivery_address', 'comment']  # Поля для адреса и комментария

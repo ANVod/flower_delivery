@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчет по заказам</title>
+</head>
+<body>
+    <h2>Отчет по заказам</h2>
+
+    <h3>Статистика по статусам заказов:</h3>
+    <ul>
+        {% for status in order_status %}
+            <li>{{ status.status }}: {{ status.count }} заказов</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Общий доход:</h3>
+    <p>Всего заработано: {{ total_revenue }} руб.</p>
+
+    <h3>Популярные товары:</h3>
+    <ul>
+        {% for item in popular_items %}
+            <li>{{ item.flower__name }}: {{ item.total_quantity }} шт.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

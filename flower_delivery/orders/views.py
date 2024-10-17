@@ -30,15 +30,15 @@ def send_order_status_telegram(order):
 
 
 # Создание заказа
-@login_required(login_url='users:login')  # Перенаправление на страницу логина, если пользователь не авторизован
+@login_required(login_url='users:login')
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.user = request.user  # Привязываем заказ к пользователю
-            order.total_price = cart.get_total_price()  # Устанавливаем общую стоимость заказа
+            order.user = request.user
+            order.total_price = cart.get_total_price()
             order.save()
 
             # Добавляем товары из корзины в заказ
@@ -48,7 +48,7 @@ def order_create(request):
                     flower=item['flower'],
                     quantity=item['quantity']
                 )
-            cart.clear()  # Очищаем корзину после создания заказа
+            cart.clear()
             return redirect('orders:order_detail', order_id=order.id)
     else:
         form = OrderForm()
