@@ -7,5 +7,7 @@
 <ul>
     {% for item in order.items.all %}
         <li>{{ item.flower.name }} - {{ item.quantity }} шт.</li>
+    {% empty %}
+        <li>В заказе нет товаров.</li>  <!-- Сообщение, если товаров нет -->
     {% endfor %}
 </ul>
