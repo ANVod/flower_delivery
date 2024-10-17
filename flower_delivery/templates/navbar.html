@@ -19,6 +19,14 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'order_history' %}">История заказов</a>
         </li>
+        <li class="nav-item">
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="nav-link btn btn-link" style="padding: 0; border: none; background: none;">
+              Выйти
+            </button>
+          </form>
+        </li>
         {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login' %}">Вход</a>

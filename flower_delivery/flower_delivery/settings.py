@@ -137,9 +137,10 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 CART_SESSION_ID = 'cart'
 
-LOGIN_REDIRECT_URL = '/users/profile/'
-LOGIN_URL = '/users/login/'
-LOGOUT_REDIRECT_URL = '/users/login/'
+# Редирект после успешного входа
+LOGIN_REDIRECT_URL = '/catalog/'  # Изменен путь на каталог
+# Редирект после выхода
+LOGOUT_REDIRECT_URL = '/'  # Изменен путь на главную страницу
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -149,10 +150,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Email настройки
+# Email настройки
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@gmail.com'
-EMAIL_HOST_PASSWORD = 'your-email-password'
+EMAIL_HOST_USER = 'your-email@gmail.com'  # Проверьте этот email
+EMAIL_HOST_PASSWORD = 'your-email-password'  # Убедитесь, что это правильный пароль
 DEFAULT_FROM_EMAIL = 'your-email@gmail.com'

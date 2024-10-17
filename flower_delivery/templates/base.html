@@ -35,7 +35,12 @@
           <a class="nav-link" href="{% url 'profile' %}">Личный кабинет</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>  <!-- Завершение сессии -->
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="nav-link btn btn-link" style="padding: 0; border: none; background: none;">
+              Выйти
+            </button>
+          </form>
         </li>
         {% else %}
         <li class="nav-item">
