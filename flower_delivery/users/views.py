@@ -21,7 +21,7 @@ def register(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Аккаунт создан для {username}!')
-            send_registration_confirmation(user)  # Отправляем уведомление после регистрации
+            # send_registration_confirmation(user)  # Временно отключаем отправку подтверждения
             return redirect('catalog:catalog_list')  # Изменен редирект на каталог после регистрации
     else:
         form = UserRegisterForm()

@@ -7,8 +7,11 @@
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="hidden" name="next" value="{{ next }}">  <!-- Добавлен параметр next -->
+  <input type="hidden" name="next" value="{{ next }}">
   <button type="submit" class="btn btn-primary">Войти</button>
 </form>
+
 <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+
+<p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>  <!-- Добавлена ссылка на регистрацию -->
 {% endblock %}
