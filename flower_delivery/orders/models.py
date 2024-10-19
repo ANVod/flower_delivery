@@ -9,11 +9,11 @@ class Order(models.Model):
         ('delivered', 'Доставлен'),
     ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders')  # Добавлен related_name
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders')
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
-    delivery_address = models.CharField(max_length=255, default="No address provided")  # Добавлено поле для адреса
-    comment = models.TextField(blank=True, null=True)  # Добавлено поле для комментария
+    delivery_address = models.CharField(max_length=255, default="No address provided")
+    comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
