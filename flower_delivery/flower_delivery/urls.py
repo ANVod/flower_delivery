@@ -14,6 +14,7 @@ urlpatterns = [
     path('', include('main.urls')),  # URL для главной страницы
     path('reviews/', include('reviews.urls')),  # URL для отзывов
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # Добавлен URL для выхода
+    path('analytics/', include('analytics.urls')),
 ]
 
 if settings.DEBUG:
