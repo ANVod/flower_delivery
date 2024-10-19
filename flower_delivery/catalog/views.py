@@ -1,15 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Flower
-from reviews.forms import ReviewForm
-from reviews.models import Review
+from .forms import ReviewForm
 
 def index(request):
-    # Получаем список всех цветов для отображения на главной странице
     flowers = Flower.objects.all()
     return render(request, 'main/index.html', {'flowers': flowers})
 
 def catalog_list(request):
-    flowers = Flower.objects.all()  # Получение всех цветов из базы
+    flowers = Flower.objects.all()
     return render(request, 'catalog/catalog_list.html', {'flowers': flowers})
 
 def flower_detail(request, flower_id):

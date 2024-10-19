@@ -18,6 +18,6 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'reviews:add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
+    <a href="{% url 'catalog:add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
 </div>
 {% endblock %}
