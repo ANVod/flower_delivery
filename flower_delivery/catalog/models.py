@@ -11,7 +11,7 @@ class Flower(models.Model):
     def __str__(self):
         return self.name
 
-class Review(models.Model):
+class Review(models.Model):#
     flower = models.ForeignKey(Flower, related_name='catalog_reviews', on_delete=models.CASCADE)  # Изменен related_name
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='catalog_reviews', on_delete=models.CASCADE)  # Изменен related_name
     text = models.TextField()

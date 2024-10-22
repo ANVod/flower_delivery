@@ -12,7 +12,6 @@ from django.conf import settings
 import csv
 import telegram
 
-
 # Отправка email о статусе заказа
 def send_order_status_email(order):
     subject = f'Ваш заказ #{order.id} изменил статус'
