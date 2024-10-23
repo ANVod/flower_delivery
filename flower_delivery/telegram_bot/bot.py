@@ -1,85 +1,154 @@
-import os
 import sys
+import os
 import django
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-# Добавляем путь к корневой директории проекта
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+# Добавляем путь к корневой директории проекта и приложениям
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))  # Корневая директория
+sys.path.append(os.path.join(os.path.dirname(__file__), '../orders'))  # Приложение orders
+sys.path.append(os.path.join(os.path.dirname(__file__), '../catalog'))  # Приложение catalog
 
-# Устанавливаем путь к настройкам Django
+# Устанавливаем переменную окружения для Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flower_delivery.settings')
+
 # Инициализируем Django
 django.setup()
 
-
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler, MessageHandler, filters
+from telegram import InputMediaPhoto
+from django.conf import settings
+from asgiref.sync import sync_to_async
 from orders.models import Order
 from catalog.models import Flower
-from asgiref.sync import sync_to_async
 
+# Переменные для хранения временных данных о заказе
+user_data = {}
 
+# Начало работы
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Я бот для обработки заказов. Доступные команды:\n"
-                                    "/new_order - создать новый заказ\n"
-                                    "/order_status - проверить статус заказа")
+    # Создаем инлайн-кнопки
+    keyboard = [
+        [InlineKeyboardButton("Создать заказ", callback_data='new_order')],
+        [InlineKeyboardButton("Проверить заказы", callback_data='get_orders')]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
 
+    await update.message.reply_text("Добро пожаловать! Выберите действие:", reply_markup=reply_markup)
 
-async def get_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    orders = Order.objects.all()
-    if orders:
-        message = "\n".join(
-            [f"Заказ #{order.id}, адрес: {order.delivery_address}, статус: {order.status}" for order in orders])
-        await update.message.reply_text(message)
+# Обработка кнопок
+async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    if query.data == 'new_order':
+        await show_catalog(update, context)
+    elif query.data == 'get_orders':
+        await get_orders(update, context)
+
+# Показ каталога с цветами
+async def show_catalog(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    flowers = await sync_to_async(list)(Flower.objects.all())
+    if flowers:
+        keyboard = []
+        for flower in flowers:
+            keyboard.append([InlineKeyboardButton(f"{flower.name} - {flower.price} руб.",
+                                                  callback_data=f"select_flower_{flower.id}")])
+
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.callback_query.message.reply_text("Выберите цветок из каталога:", reply_markup=reply_markup)
     else:
-        await update.message.reply_text("Нет доступных заказов.")
+        await update.callback_query.message.reply_text("Каталог пуст.")
 
+# Обработка выбора цветка
+async def handle_flower_selection(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    flower_id = int(query.data.split("_")[2])
+    flower = await sync_to_async(Flower.objects.get)(id=flower_id)
 
-async def new_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user = update.message.from_user
-
-    # Используем sync_to_async для вызова синхронных методов Django
-    flower = await sync_to_async(Flower.objects.first)()  # Для упрощения возьмем первый цветок из каталога
     if flower:
-        order = await sync_to_async(Order.objects.create)(
-            user_id=1, delivery_address="Улица Пушкина, дом Колотушкина", status='new'
-        )  # Примерный адрес
-        await sync_to_async(order.flowers.add)(flower)
+        # Путь к изображению
+        image_path = os.path.join(settings.MEDIA_ROOT, flower.image.name)
 
-        await update.message.reply_text(f"Новый заказ создан: Заказ #{order.id}, статус: {order.status}")
+        # Проверяем, существует ли изображение
+        if os.path.exists(image_path):
+            with open(image_path, 'rb') as image_file:
+                await query.message.reply_photo(photo=image_file, caption=f"{flower.name}\nЦена: {flower.price} руб.")
+        else:
+            await query.message.reply_text("Изображение недоступно.")
+
+        # Сохраняем информацию о выбранном цветке
+        user_id = query.from_user.id
+        user_data[user_id] = {"flower": flower}
+        await query.message.reply_text("Введите количество:")
     else:
-        await update.message.reply_text("Нет доступных цветов для заказа.")
+        await query.message.reply_text("Цветок не найден.")
 
-
-from asgiref.sync import sync_to_async
-
-async def order_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if context.args:  # Проверяем, переданы ли аргументы
-        order_id = context.args[0]
+# Получаем количество от пользователя
+async def get_quantity(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.message.from_user.id
+    if user_id in user_data and "flower" in user_data[user_id]:
         try:
-            # Используем sync_to_async для работы с синхронными методами
-            order = await sync_to_async(Order.objects.get)(id=order_id)
-            await update.message.reply_text(f"Заказ #{order.id}, статус: {order.status}")
-        except Order.DoesNotExist:
-            await update.message.reply_text(f"Заказ с ID {order_id} не найден.")
-    else:
-        await update.message.reply_text("Пожалуйста, укажите ID заказа. Пример: /order_status 1")
+            quantity = int(update.message.text)
+            user_data[user_id]["quantity"] = quantity
+            await update.message.reply_text(f"Вы выбрали {quantity} шт.\nВведите адрес доставки:")
+        except ValueError:
+            await update.message.reply_text("Пожалуйста, введите корректное количество.")
+
+# Получаем адрес от пользователя
+async def get_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.message.from_user.id
+    if user_id in user_data and "quantity" in user_data[user_id]:
+        user_data[user_id]["address"] = update.message.text
+        await update.message.reply_text("Введите дату доставки (в формате ГГГГ-ММ-ДД):")
+
+
+# Получаем дату доставки
+async def get_delivery_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.message.from_user.id
+    if user_id in user_data and "address" in user_data[user_id]:
+        user_data[user_id]["delivery_date"] = update.message.text
+
+        flower = user_data[user_id]["flower"]
+        quantity = user_data[user_id]["quantity"]
+        total_price = flower.price * quantity
+        address = user_data[user_id]["address"]
+        delivery_date = user_data[user_id]["delivery_date"]
+
+        # Создаем заказ
+        order = await sync_to_async(Order.objects.create)(
+            user_id=user_id, delivery_address=address, delivery_date=delivery_date, status='new',
+            total_price=total_price
+        )
+
+        # Добавляем цветок в заказ
+        await sync_to_async(order.items.create)(flower=flower, quantity=quantity)
+
+        await update.message.reply_text(
+            f"Ваш заказ создан!\nЗаказ #{order.id}\nАдрес: {address}\nДата доставки: {delivery_date}\nСумма: {total_price} руб.")
+
+        # Очищаем временные данные
+        user_data.pop(user_id)
+
 
 def main():
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
     if not bot_token:
         print("Ошибка: Необходимо установить переменную окружения TELEGRAM_BOT_TOKEN с токеном бота")
         return
-        # Создаем приложение бота с указанным токеном
+
     application = ApplicationBuilder().token(bot_token).build()
 
-        # Добавляем обработчики команд
+    # Добавляем обработчики команд и инлайн-кнопок
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("get_orders", get_orders))
-    application.add_handler(CommandHandler("new_order", new_order))
-    application.add_handler(CommandHandler("order_status", order_status))
+    application.add_handler(CallbackQueryHandler(button_callback))
+    application.add_handler(CallbackQueryHandler(handle_flower_selection, pattern="select_flower_"))
+    application.add_handler(MessageHandler(filters.Regex(r"^\d+$"), get_quantity))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, get_address))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, get_delivery_date))
 
-        # Запускаем бота
+    # Запускаем бота
     application.run_polling()
 
+
 if __name__ == '__main__':
-        main()
+    main()
