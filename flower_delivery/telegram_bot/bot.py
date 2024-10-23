@@ -101,7 +101,6 @@ async def get_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_data[user_id]["address"] = update.message.text
         await update.message.reply_text("Введите дату доставки (в формате ГГГГ-ММ-ДД):")
 
-
 # Получаем дату доставки
 async def get_delivery_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id
@@ -129,6 +128,21 @@ async def get_delivery_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # Очищаем временные данные
         user_data.pop(user_id)
 
+# Функция для получения заказов пользователя
+async def get_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.callback_query.from_user.id
+    orders = await sync_to_async(list)(Order.objects.filter(user_id=user_id))
+
+    if orders:
+        response_message = "Ваши заказы:\n"
+        for order in orders:
+            response_message += (f"Заказ #{order.id}:\n"
+                                 f"Адрес доставки: {order.delivery_address}\n"
+                                 f"Дата доставки: {order.delivery_date}\n"
+                                 f"Статус: {order.status}\n\n")
+        await update.callback_query.message.reply_text(response_message)
+    else:
+        await update.callback_query.message.reply_text("У вас нет активных заказов.")
 
 def main():
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -148,7 +162,6 @@ def main():
 
     # Запускаем бота
     application.run_polling()
-
 
 if __name__ == '__main__':
     main()
