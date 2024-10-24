@@ -137,10 +137,12 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 CART_SESSION_ID = 'cart'
 
+# Редирект на страницу входа при попытке доступа к защищенным страницам
+LOGIN_URL = '/users/login/'
+
 # Редирект после успешного входа
-LOGIN_REDIRECT_URL = '/catalog/'  # Изменен путь на каталог
-# Редирект после выхода
-LOGOUT_REDIRECT_URL = '/'  # Изменен путь на главную страницу
+LOGIN_REDIRECT_URL = '/orders/cart/'  # Например, в корзину
+LOGOUT_REDIRECT_URL = '/'  # На главную страницу после выхода
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
