@@ -52,6 +52,12 @@ h1, h2, h3, h4, h5 {
     margin: 0;
 }
 
+/* Стили для карусели */
+.carousel-item img {
+    max-height: 500px;
+    object-fit: cover;
+}
+
 /* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
     .navbar-nav {

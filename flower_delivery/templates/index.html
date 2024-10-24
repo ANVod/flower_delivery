@@ -2,26 +2,33 @@
 
 {% block content %}
   <h1>Добро пожаловать в Flower Delivery!</h1>
-  <p>Выберите цветы из нашего каталога или оставьте отзыв.</p>
-  <a href="{% url 'catalog:catalog_list' %}">Каталог</a>
-
-  <div class="row mt-4">
-    {% for flower in flowers %}
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ flower.name }}</h5>
-          <p class="card-text">{{ flower.description }}</p>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {% for flower in flowers %}
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for flower in flowers %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <img src="{{ flower.image.url }}" class="d-block w-100" alt="{{ flower.name }}">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ flower.name }}</h5>
+          <p>{{ flower.description }}</p>
           <p><strong>Цена:</strong> {{ flower.price }} ₽</p>
-          <p><strong>В наличии:</strong> {{ flower.stock }} шт.</p>
-          <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-primary">Подробнее</a>
-          <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-success">Заказать</a>
-          <a href="{% url 'reviews:add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
-          <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-info">Смотреть отзывы</a>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+
+  <a href="{% url 'catalog:catalog_list' %}" class="btn btn-primary mt-5">Перейти в каталог</a>
 {% endblock %}
