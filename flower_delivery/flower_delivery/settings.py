@@ -140,9 +140,10 @@ CART_SESSION_ID = 'cart'
 # Редирект на страницу входа при попытке доступа к защищенным страницам
 LOGIN_URL = '/users/login/'
 
-# Редирект после успешного входа
-LOGIN_REDIRECT_URL = '/orders/cart/'  # Например, в корзину
-LOGOUT_REDIRECT_URL = '/'  # На главную страницу после выхода
+# Редирект на главную страницу после успешного входа
+LOGIN_REDIRECT_URL = '/'  # Главная страница
+# Редирект на главную страницу после выхода
+LOGOUT_REDIRECT_URL = '/'  # Главная страница
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

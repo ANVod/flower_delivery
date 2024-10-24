@@ -13,7 +13,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             messages.success(request, f'Аккаунт создан для {user.username}!')
-            return redirect('catalog:catalog_list')
+            return redirect('index')  # Перенаправляем на главную страницу после регистрации
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
