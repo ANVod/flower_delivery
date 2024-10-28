@@ -9,6 +9,8 @@
     <p><strong>В наличии:</strong> {{ flower.stock }} шт.</p>
     <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Добавить в корзину</a>
 
+    <h3>Средний рейтинг: {{ average_rating|floatformat:1 }} / 5</h3>
+
     <h3>Отзывы:</h3>
     <ul>
         {% for review in reviews %}

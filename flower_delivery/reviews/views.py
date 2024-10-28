@@ -3,6 +3,7 @@ from .models import Review
 from .forms import ReviewForm
 from catalog.models import Flower
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 
 @login_required
 def add_review(request, flower_id):
@@ -14,7 +15,7 @@ def add_review(request, flower_id):
             review.user = request.user
             review.flower = flower
             review.save()
-            return redirect('catalog:flower_detail', flower_id=flower.id)  # Редирект на страницу деталей цветка
+            return redirect('catalog:flower_detail', flower_id=flower.id)
     else:
         form = ReviewForm()
     return render(request, 'reviews/add_review.html', {'form': form, 'flower': flower})
@@ -22,7 +23,12 @@ def add_review(request, flower_id):
 def flower_reviews(request, flower_id):
     flower = get_object_or_404(Flower, id=flower_id)
     reviews = Review.objects.filter(flower=flower)
-    return render(request, 'reviews/flower_reviews.html', {'reviews': reviews, 'flower': flower})
+    average_rating = Review.get_average_rating(flower_id)
+    return render(request, 'reviews/flower_reviews.html', {
+        'reviews': reviews,
+        'flower': flower,
+        'average_rating': average_rating
+    })
 
 def review_list(request):
     reviews = Review.objects.all()
