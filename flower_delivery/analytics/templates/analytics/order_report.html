@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Отчет по заказам</title>
@@ -23,5 +23,10 @@
             <li>{{ item.flower__name }}: {{ item.total_quantity }} шт.</li>
         {% endfor %}
     </ul>
+
+    <p>
+        <a href="{% url 'analytics:order_report_csv' %}" download="order_report.csv" class="btn btn-primary">Выгрузить CSV отчет</a>
+        <a href="{% url 'analytics:order_report_pdf' %}" download="order_report.pdf" class="btn btn-secondary">Выгрузить PDF отчет</a>
+    </p>
 </body>
 </html>
