@@ -1,5 +1,17 @@
-<ul>
-  {% for order in orders %}
-    <li>Заказ #{{ order.id }} - {{ order.created_at }} - Статус: {{ order.status }} - Адрес: {{ order.delivery_address }}</li>
-  {% endfor %}
-</ul>
+<h2>История ваших заказов</h2>
+
+{% if orders %}
+    <ul>
+    {% for order in orders %}
+        <li>
+            Заказ #{{ order.id }} - {{ order.created_at|date:"d M Y H:i" }} - Статус: {{ order.status }}
+            <form action="{% url 'orders:repeat_order' order_id=order.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Повторить заказ</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас пока нет заказов.</p>
+{% endif %}

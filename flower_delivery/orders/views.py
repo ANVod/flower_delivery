@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Order, OrderItem
@@ -11,6 +10,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import csv
 import telegram
+
 
 # Отправка email о статусе заказа
 def send_order_status_email(order):
@@ -27,6 +27,18 @@ def send_order_status_telegram(order):
     message = f'Ваш заказ #{order.id} изменил статус на: {order.status}'
     bot = telegram.Bot(token=bot_token)
     bot.send_message(chat_id=chat_id, text=message)
+
+
+# Повторный заказ
+@login_required
+def repeat_order(request, order_id):
+    previous_order = get_object_or_404(Order, id=order_id, user=request.user)
+    cart = Cart(request)
+
+    for item in previous_order.items.all():
+        cart.add(flower=item.flower, quantity=item.quantity)
+
+    return redirect('orders:cart_detail')
 
 
 # Создание заказа

@@ -22,9 +22,6 @@
           <a class="nav-link" href="{% url 'catalog:catalog_list' %}">Каталог</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'order_history' %}">История заказов</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="{% url 'orders:cart_detail' %}">Корзина</a>
         </li>
         {% if user.is_authenticated %}

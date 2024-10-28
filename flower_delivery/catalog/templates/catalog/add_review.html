@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить отзыв</title>
+</head>
+<body>
+    <h2>Добавить отзыв о {{ flower.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить отзыв</button>
+    </form>
+    <a href="{% url 'catalog:flower_detail' flower_id=flower.id %}">Назад к описанию</a>
+</body>
+</html>
