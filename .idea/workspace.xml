@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70833188-e2cb-4688-a5dd-673228be6ebf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flower_delivery/fonts/FreeSans.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flower_delivery/analytics/static/analytics/charts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/analytics/templates/analytics/order_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/analytics/templates/analytics/order_report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/analytics/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/analytics/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flower_delivery/analytics/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/analytics/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/flower_delivery/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flower_delivery/telegram_bot/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/flower_delivery/telegram_bot/bot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

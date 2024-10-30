@@ -3,30 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Отчет по заказам</title>
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Устанавливаем адаптивную ширину и высоту для контейнеров графиков */
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <h2>Отчет по заказам</h2>
 
     <h3>Статистика по статусам заказов:</h3>
-    <ul>
-        {% for status in order_status %}
-            <li>{{ status.status }}: {{ status.count }} заказов</li>
-        {% endfor %}
-    </ul>
+    <div class="chart-container">
+        <canvas id="orderStatusChart"></canvas>
+    </div>
+    <script id="orderStatusData" type="application/json">{{ order_status_data|safe }}</script>
 
     <h3>Общий доход:</h3>
     <p>Всего заработано: {{ total_revenue }} руб.</p>
 
     <h3>Популярные товары:</h3>
-    <ul>
-        {% for item in popular_items %}
-            <li>{{ item.flower__name }}: {{ item.total_quantity }} шт.</li>
-        {% endfor %}
-    </ul>
+    <div class="chart-container">
+        <canvas id="popularItemsChart"></canvas>
+    </div>
+    <script id="popularItemsData" type="application/json">{{ popular_items_data|safe }}</script>
 
     <p>
         <a href="{% url 'analytics:order_report_csv' %}" download="order_report.csv" class="btn btn-primary">Выгрузить CSV отчет</a>
         <a href="{% url 'analytics:order_report_pdf' %}" download="order_report.pdf" class="btn btn-secondary">Выгрузить PDF отчет</a>
     </p>
+
+    <script src="{% static 'analytics/charts.js' %}"></script>
 </body>
 </html>

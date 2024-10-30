@@ -12,18 +12,25 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 import os
+import json
 
-# Представление для HTML-отчета
+# Представление для HTML-отчета с данными для графиков
 @login_required
 def order_report(request):
     order_status = Order.objects.values('status').annotate(count=Count('id'))
     total_revenue = Order.objects.aggregate(Sum('total_price'))['total_price__sum'] or 0
     popular_items = OrderItem.objects.values('flower__name').annotate(total_quantity=Sum('quantity')).order_by('-total_quantity')[:5]
 
+    # Данные для графиков
+    order_status_data = list(order_status)
+    popular_items_data = list(popular_items)
+
     context = {
         'order_status': order_status,
         'total_revenue': total_revenue,
         'popular_items': popular_items,
+        'order_status_data': json.dumps(order_status_data),  # JSON для JavaScript
+        'popular_items_data': json.dumps(popular_items_data),  # JSON для JavaScript
     }
     return render(request, 'analytics/order_report.html', context)
 
