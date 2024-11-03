@@ -3,9 +3,11 @@ from django.http import JsonResponse
 import telegram
 from orders.models import Order, OrderItem
 from django.conf import settings
+from asgiref.sync import sync_to_async
+from catalog.models import Flower
 
-# Создаем экземпляр бота
-bot = telegram.Bot(token='YOUR_BOT_TOKEN')
+# Создаем экземпляр бота с использованием токена из настроек Django
+bot = telegram.Bot(token=settings.TELEGRAM_BOT_TOKEN)
 
 # Обработка запросов от Telegram
 @csrf_exempt
@@ -45,4 +47,3 @@ def telegram_webhook(request):
                 bot.send_message(chat_id=chat_id, text="Используйте команду в формате: /order <ID цветка> <количество>")
 
     return JsonResponse({'status': 'ok'})
-
