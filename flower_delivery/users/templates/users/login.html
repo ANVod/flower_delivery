@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Вход{% endblock %}
-
 {% block content %}
-<h2>Вход в систему</h2>
-<form method="post">
+<h2 class="text-center my-4">Вход в систему</h2>
+<form method="post" class="text-center">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="hidden" name="next" value="{{ next }}">
-  <button type="submit" class="btn btn-primary">Войти</button>
+  <button type="submit" class="btn btn-primary mt-2">Войти</button>
 </form>
-
-<a href="{% url 'password_reset' %}">Забыли пароль?</a>
-
-<p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>  <!-- Добавлена ссылка на регистрацию -->
+<p class="text-center mt-3"><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+<p class="text-center">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
 {% endblock %}

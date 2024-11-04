@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Каталог цветов</h2>
+<h2 class="text-center my-4">Каталог цветов</h2>
 <div class="row">
     {% for flower in flowers %}
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
                 <img src="{{ flower.image.url }}" class="card-img-top" alt="{{ flower.name }}">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title">{{ flower.name }}</h5>
-                    <p class="card-text">{{ flower.description }}</p>
+                    <p class="card-text">{{ flower.description|truncatewords:20 }}</p>
                     <p><strong>Цена:</strong> {{ flower.price }} ₽</p>
-                    <p><strong>В наличии:</strong> {{ flower.stock }} шт.</p>
-                    <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-info">Подробнее</a>
-                    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Заказать</a> <!-- Кнопка Заказать -->
+                    <a href="{% url 'catalog:flower_detail' flower.id %}" class="btn btn-info mb-2">Подробнее</a>
+                    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Заказать</a>
                 </div>
             </div>
         </div>

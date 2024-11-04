@@ -1,17 +1,17 @@
-<h2>История ваших заказов</h2>
+<h2 class="text-center my-4">История ваших заказов</h2>
 
 {% if orders %}
-    <ul>
+    <ul class="list-group mb-4">
     {% for order in orders %}
-        <li>
+        <li class="list-group-item">
             Заказ #{{ order.id }} - {{ order.created_at|date:"d M Y H:i" }} - Статус: {{ order.status }}
             <form action="{% url 'orders:repeat_order' order_id=order.id %}" method="post" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit">Повторить заказ</button>
+                <button type="submit" class="btn btn-secondary btn-sm">Повторить заказ</button>
             </form>
         </li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>У вас пока нет заказов.</p>
+    <p class="text-center">У вас пока нет заказов.</p>
 {% endif %}

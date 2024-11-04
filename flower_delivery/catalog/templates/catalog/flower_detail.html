@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h2>{{ flower.name }}</h2>
-    <img src="{{ flower.image.url }}" alt="{{ flower.name }}">
+<div class="container text-center">
+    <h2 class="my-4">{{ flower.name }}</h2>
+    <img src="{{ flower.image.url }}" class="img-fluid rounded mb-4" alt="{{ flower.name }}">
     <p>{{ flower.description }}</p>
     <p><strong>Цена:</strong> {{ flower.price }} ₽</p>
     <p><strong>В наличии:</strong> {{ flower.stock }} шт.</p>
-    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary">Добавить в корзину</a>
+    <a href="{% url 'orders:cart_add' flower.id %}" class="btn btn-primary mb-3">Добавить в корзину</a>
 
     <h3>Средний рейтинг: {{ average_rating|floatformat:1 }} / 5</h3>
-
-    <h3>Отзывы:</h3>
-    <ul>
-        {% for review in reviews %}
-        <li>{{ review.user.username }}: {{ review.text }} (Рейтинг: {{ review.rating }})</li>
-        {% empty %}
-        <li>Отзывов пока нет.</li>
-        {% endfor %}
-    </ul>
-
-    <a href="{% url 'catalog:add_review' flower.id %}" class="btn btn-secondary">Оставить отзыв</a>
+    <div>
+        <h4>Отзывы:</h4>
+        <ul class="list-unstyled">
+            {% for review in reviews %}
+            <li>{{ review.user.username }}: {{ review.text }} (Рейтинг: {{ review.rating }})</li>
+            {% empty %}
+            <li>Отзывов пока нет.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'catalog:add_review' flower.id %}" class="btn btn-secondary mt-3">Оставить отзыв</a>
 </div>
 {% endblock %}
