@@ -3,10 +3,9 @@ import os
 import django
 from dotenv import load_dotenv
 import telegram
-from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
+from telegram import Update, KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, CallbackQueryHandler, filters
 from django.conf import settings
-from asgiref.sync import sync_to_async
 
 # Загрузка переменных из .env файла
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -22,10 +21,6 @@ django.setup()
 # Создаем экземпляр бота
 bot = telegram.Bot(token=settings.TELEGRAM_BOT_TOKEN)
 
-# Роли пользователей
-USER_ROLE = "user"
-MANAGER_ROLE = "manager"
-
 
 # Функция для привязки пользователя по номеру телефона
 async def contact_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -33,7 +28,7 @@ async def contact_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.message.chat.id
     if contact:
         phone_number = contact.phone_number
-        user_role = MANAGER_ROLE if phone_number.endswith("00") else USER_ROLE  # Пример условия для менеджера
+        user_role = "manager" if phone_number.endswith("00") else "user"
         context.user_data["role"] = user_role
         await bot.send_message(chat_id=chat_id, text=f"Ваш номер {phone_number} подтвержден.\nРоль: {user_role}.")
         await show_menu(update, context)
@@ -42,9 +37,8 @@ async def contact_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Отображение меню для пользователей и менеджеров
 async def show_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
-    user_role = context.user_data.get("role", USER_ROLE)
-    if user_role == MANAGER_ROLE:
-        # Меню для менеджера
+    user_role = context.user_data.get("role", "user")
+    if user_role == "manager":
         keyboard = [
             [KeyboardButton("📈 Отчет по заказам")],
             [KeyboardButton("📋 Проверить все заказы")],
@@ -52,7 +46,6 @@ async def show_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ]
         welcome_text = "Добро пожаловать, менеджер! 👩‍💼"
     else:
-        # Меню для пользователя
         keyboard = [
             [KeyboardButton("🛍️ Создать заказ")],
             [KeyboardButton("📦 Мои заказы")],
@@ -75,25 +68,55 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                            reply_markup=reply_markup)
 
 
-# Функция создания заказа
+# Функция создания заказа с заглушкой каталога
 async def create_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
-    await bot.send_message(chat_id=chat_id, text="🛒 Создание заказа...")
+    await bot.send_message(chat_id=chat_id, text="🛒 Выберите цветок для заказа:")
 
-    # Пример каталога
-    catalog = "1️⃣ Букет Роз - 1500 руб.\n2️⃣ Орхидеи - 2500 руб.\n3️⃣ Лилии - 2000 руб."
-    await bot.send_message(chat_id=chat_id, text=f"Каталог товаров:\n\n{catalog}\n\nНапишите ID цветка и количество.")
+    # Статичный каталог для примера
+    catalog_items = [
+        {"id": 1, "name": "Букет Роз", "price": "1500 руб.", "photo_url": "https://example.com/rose.jpg"},
+        {"id": 2, "name": "Орхидеи", "price": "2500 руб.", "photo_url": "https://example.com/orchid.jpg"},
+        {"id": 3, "name": "Лилии", "price": "2000 руб.", "photo_url": "https://example.com/lily.jpg"}
+    ]
+    keyboard = [
+        [InlineKeyboardButton(f"{item['name']} - {item['price']}", callback_data=f"select_{item['id']}")]
+        for item in catalog_items
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await bot.send_message(chat_id=chat_id, text="Каталог:", reply_markup=reply_markup)
 
 
-# Функция для проверки заказов
-async def check_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_role = context.user_data.get("role", USER_ROLE)
+# Обработчик выбора цветка из каталога с заглушкой фото
+async def flower_selection_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    flower_id = int(query.data.split('_')[1])
+
+    # Находим цветок из статичного каталога
+    catalog_items = {
+        1: {"name": "Букет Роз", "price": "1500 руб.", "photo_url": "https://example.com/rose.jpg"},
+        2: {"name": "Орхидеи", "price": "2500 руб.", "photo_url": "https://example.com/orchid.jpg"},
+        3: {"name": "Лилии", "price": "2000 руб.", "photo_url": "https://example.com/lily.jpg"}
+    }
+    flower = catalog_items.get(flower_id)
+    if flower:
+        await bot.send_photo(
+            chat_id=query.message.chat.id,
+            photo=flower["photo_url"],
+            caption=f"Вы выбрали {flower['name']}.\nЦена: {flower['price']}\nДля подтверждения заказа отправьте 'подтвердить'."
+        )
+        context.user_data["selected_flower"] = flower
+
+
+# Функция подтверждения заказа
+async def confirm_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
-
-    if user_role == MANAGER_ROLE:
-        await bot.send_message(chat_id=chat_id, text="📋 Все заказы:\n1. Букет Роз (Ожидает)\n2. Лилии (Доставлен)")
+    flower = context.user_data.get("selected_flower")
+    if flower:
+        await bot.send_message(chat_id=chat_id, text=f"Ваш заказ на {flower['name']} оформлен! 🎉")
+        context.user_data.pop("selected_flower", None)
     else:
-        await bot.send_message(chat_id=chat_id, text="📦 Ваши заказы:\n1. Букет Роз (В пути)\n2. Орхидеи (Ожидает)")
+        await bot.send_message(chat_id=chat_id, text="Сначала выберите цветок для заказа.")
 
 
 # Функция для отправки отчета по заказам
@@ -117,7 +140,8 @@ def main():
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.CONTACT, contact_handler))
     application.add_handler(MessageHandler(filters.Regex("^(🛍️ Создать заказ)$"), create_order))
-    application.add_handler(MessageHandler(filters.Regex("^(📦 Мои заказы|📋 Проверить все заказы)$"), check_orders))
+    application.add_handler(CallbackQueryHandler(flower_selection_handler, pattern="^select_\\d+$"))
+    application.add_handler(MessageHandler(filters.Regex("^(подтвердить)$"), confirm_order))
     application.add_handler(MessageHandler(filters.Regex("^(📈 Отчет по заказам)$"), send_order_report))
     application.add_handler(MessageHandler(filters.Regex("^(🔄 Главное меню)$"), show_menu))
 

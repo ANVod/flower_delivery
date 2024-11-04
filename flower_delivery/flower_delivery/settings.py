@@ -142,7 +142,7 @@ CART_SESSION_ID = 'cart'
 LOGIN_URL = '/users/login/'
 
 # Редирект на главную страницу после успешного входа
-LOGIN_REDIRECT_URL = '/'  # Главная страница
+enLOGIN_REDIRECT_URL = '/'  # Главная страница
 # Редирект на главную страницу после выхода
 LOGOUT_REDIRECT_URL = '/'  # Главная страница
 
