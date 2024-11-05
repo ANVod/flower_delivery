@@ -51,7 +51,6 @@ source venv/bin/activate  # Для Linux/macOS
 venv\Scripts\activate     # Для Windows
 pip install -r requirements.txt
 
-
 Переменные окружения
 Создайте файл .env в корневой директории и добавьте следующие настройки:
 plaintext
