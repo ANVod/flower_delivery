@@ -15,13 +15,13 @@
 
     <h3 class="mt-4">Ваш заказ:</h3>
     <ul class="list-group mb-3">
-        {% for item in cart %}
+        {% for item in cart_items %}
         <li class="list-group-item d-flex">
             <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" class="img-fluid" style="max-width: 100px;">
             <div class="ms-3">
                 <h5>{{ item.flower.name }}</h5>
                 <p>Количество: {{ item.quantity }}</p>
-                <p>Цена: {{ item.price }} руб.</p>
+                <p>Цена: {{ item.get_total_price }} руб.</p>
             </div>
         </li>
         {% endfor %}

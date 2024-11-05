@@ -1,12 +1,12 @@
 <h2 class="text-center my-4">Корзина</h2>
 <ul class="list-group mb-3">
-    {% for item in cart %}
+    {% for item in cart.items.all %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <img src="{{ item.flower.image.url }}" alt="{{ item.flower.name }}" class="img-fluid" style="max-width: 80px;">
             <div class="ms-3">
                 <h5>{{ item.flower.name }}</h5>
                 <p>Количество: {{ item.quantity }}</p>
-                <p>Цена: {{ item.total_price }} руб.</p>
+                <p>Цена: {{ item.get_total_price }} руб.</p>
                 <form action="{% url 'orders:cart_remove' item.flower.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Удалить</button>

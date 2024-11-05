@@ -1,7 +1,6 @@
 from django.db import models
-from catalog.models import Flower
 from django.conf import settings
-
+from catalog.models import Flower
 
 class Order(models.Model):
     STATUS_CHOICES = [
@@ -27,3 +26,23 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.flower.name}"
+
+class Cart(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')
+
+    def __str__(self):
+        return f"Корзина пользователя {self.user.username}"
+
+    def get_total_price(self):
+        return sum(item.get_total_price() for item in self.items.all())
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
+    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.flower.name}"
+
+    def get_total_price(self):
+        return self.flower.price * self.quantity
